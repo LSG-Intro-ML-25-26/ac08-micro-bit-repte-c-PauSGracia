@@ -1,3 +1,10 @@
+radio.onReceivedNumber(function (receivedNumber) {
+    if (receivedNumber >= randint(1, 6)) {
+        basic.showIcon(IconNames.Sad)
+    } else {
+        basic.showIcon(IconNames.Happy)
+    }
+})
 input.onButtonPressed(Button.A, function () {
     radio.sendString("Hola")
     basic.showString("SENT")
@@ -5,7 +12,10 @@ input.onButtonPressed(Button.A, function () {
 radio.onReceivedString(function (receivedString) {
     basic.showString(receivedString)
 })
-radio.setGroup(1)
-basic.forever(function () {
-	
+input.onButtonPressed(Button.B, function () {
+    dice = randint(1, 6)
+    basic.showNumber(dice)
+    radio.sendNumber(dice)
 })
+let dice = 0
+radio.setGroup(1)
